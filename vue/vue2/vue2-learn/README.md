@@ -7,14 +7,6 @@
 
 
 
-
-
-
-
-
-
-
-
 ## Project Setup
 
 ```sh

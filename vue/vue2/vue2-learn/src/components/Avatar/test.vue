@@ -9,7 +9,7 @@
 
 
 <script>
-import Avatar from './Avatar.vue';
+import Avatar from './';
 export default {
     name: "App",
     components: {

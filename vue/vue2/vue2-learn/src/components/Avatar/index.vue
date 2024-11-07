@@ -1,5 +1,5 @@
 <template>
-    <img class="avatar-img" :src="url" :style="{ width: size + 'px', height: size + 'px' }" alt="">
+    <img class="avatar-container" :src="url" :style="{ width: size + 'px', height: size + 'px' }" alt="">
 </template>
 
 
@@ -20,9 +20,9 @@ export default {
 
 
 <style scoped>
-.avatar-img {
+.avatar-container {
     border-radius: 50%;
-    /* 控制替换元素（例如 <img> 或 <video>）的内容如何适应其容器 */
+    /* 控制替换元素（例如 <img> 或 <video>）的内容如何适应其容器 object-fit: cover; */
     object-fit: cover;
     display: block;
 }
