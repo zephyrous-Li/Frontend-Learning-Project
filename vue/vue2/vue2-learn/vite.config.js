@@ -6,6 +6,12 @@ import vue2 from "@vitejs/plugin-vue2";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+      // 跨域代理事例
+    proxy: {
+      "/commercial_api": "https://www.zhihu.com/",
+    },
+  },
   plugins: [
     vue2(),
     legacy({
