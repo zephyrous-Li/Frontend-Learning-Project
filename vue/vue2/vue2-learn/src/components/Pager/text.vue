@@ -20,6 +20,10 @@ export default {
     };
   },
   methods: {
+    /**
+     * 处理子组件传递的数据
+     * @param {Object}  e - 从子组件接收到的数据对象
+     */
     handlePageChange(e) {
       console.log(e, "页码改变了");
       this.current = e;
