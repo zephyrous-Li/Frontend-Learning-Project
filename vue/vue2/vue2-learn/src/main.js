@@ -6,7 +6,9 @@ import router from "./router";
 // import "./api/test";
 // 注册全局指令
 import vLoading from "./directives/loading";
+import vLazy from "./directives/lazy";
 Vue.directives("loading", vLoading);
+Vue.directives("lazy", vLazy);
 new Vue({
   router,
   render: (h) => h(App),

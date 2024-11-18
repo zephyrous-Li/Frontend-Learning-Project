@@ -19,4 +19,10 @@ export default {
    * @param {object} binding -描述了指令中提供的信息
    */
   updata() {},
+  /**
+   * 指令与元素解绑时调用
+   * @param {String} el -被绑定元素的真实dom
+   * @param {object} binding -描述了指令中提供的信息
+   */
+  unbind() {},
 };
