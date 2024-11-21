@@ -17,18 +17,41 @@
   </form>
 </template>
 <script>
+import { mapState } from "vuex";
+mapState("loginUser", {
+  loading: "loading",
+});
 export default {
   data() {
     return {
       loginId: "",
       loginPwd: "",
-      loading: false,
     };
   },
   methods: {
-    handleSubmit() {
-      console.log("登录", this.loginId, this.loginPwd);
+    async handleSubmit() {
+      const resp = await this.$store.dispatch("loginUser/login", {
+        loginId: this.loginId,
+        loginPwd: this.loginPwd,
+      });
+      if (resp) {
+        const path = this.$route.query.returnUrl || "/";
+        this.$router.push(path);
+      } else {
+        alert("登陆失败了");
+        this.loginId = "";
+        this.loginPwd = "";
+      }
     },
+  },
+  computed: {
+    ...mapState("loginUser", ["loading"]),
+    // ...mapState("loginUser", {
+    //   loading: "loading",
+    // }),
+    // ...mapState({
+    //   loading: (state) => state.loginUser.loading,
+    // }),
   },
 };
 </script>
@@ -58,4 +81,3 @@ export default {
   font-size: 16px;
 }
 </style>
-

@@ -13,12 +13,13 @@ export default {
       state.user = payload;
     },
   },
-  Action: {
+  actions: {
     async login(ctx, payload) {
       ctx.commit("setLoading", true);
-      const resp = await userApi.loading(payload.loginId, payload.loginPwd);
+      const resp = await userApi.login(payload.loginId, payload.loginPwd);
       ctx.commit("setUser", resp);
       ctx.commit("setLoading", false);
+      return resp;
     },
     async whoAmI(ctx) {
       ctx.commit("setLoading", true);

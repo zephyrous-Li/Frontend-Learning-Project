@@ -5,7 +5,7 @@
       |
       <router-link to="/News">News</router-link>
       |
-      <user-name />
+      <UserName />
     </div>
     <router-view />
   </div>
