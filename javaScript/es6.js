@@ -58,10 +58,17 @@ const user = {
 };
 // 7. 计算属性名
 
-const prop1 = "name";
+function setName() {
+  return "name";
+}
+// 只要是表达式的值都可以放这里
+// const prop1 = "name";
+const prop1 = setName();
+
 const user1 = {
   [prop1]: "mingzi",
 };
+
 // 8. Object API
 
 // 8.1 两个数据是否相等
@@ -78,5 +85,65 @@ Object.assign(user, user1); //建议使用展开运算，会改动user对象
 // Object.setPrototypeOf(user1, user);
 // user1._proto_ = user;    等效语法
 
-
 // 面向对象开发 类
+// 类结构
+class Name {
+  constructor(type, name, ...list) {}
+  print() {}
+}
+const a = new Name("狗", "旺财");
+
+// 同样具有对象的计算属性名
+const c = "sss";
+class Name {
+  constructor(type, name, ...list) {}
+  [c]() {}
+}
+const b = new Name("狗", "旺财");
+
+// getter与setter
+// 和es6以前Object.defineProperty 定义对象成员的读取与设置
+// 与java的读取与赋值相同，只能用函数处理
+class Name1 {
+  constructor(type, name, ...list) {
+    this.name = name;
+  }
+  // Name 的访问器
+  // 访问器控制的参数不在原型上
+  get name() {
+    return this.name + "的名字";
+  }
+  set name(name) {
+    this.name = name;
+  }
+}
+
+// 实例成员与静态成员
+
+// 不需要创建实例就可以访问的成员称为静态成员，只能通过构造函数本身来访问
+// 使用static定义的成员称为静态成员
+class Name2 {
+  constructor() {}
+  static d = 50;
+}
+
+// 字段初始化器
+// 1.使用static的字段初始化器，添加的是静态成员
+// 2.没有使用static的字段初始化器，添加的成员位于实例产生的对象上
+// 3.箭头函数在字段初始化器，位于当前对象上（不在原型上）
+
+// 类本质上还是函数可以作为表达式被返回
+
+// 类的继承 extends 表达继承关系
+// class Dog extends Aminal {}
+// 如果Dog是Aminal的子类，则Dog的constructor首行要运行super()函数，相当于调用父类构造器
+// 构成继承关系（完成原型链继承）
+// super作用对象调用，可以使用父类的方法，super.a 和b=new Aminal()  b.a()等价
+
+// 解构
+// 解构
+// let { name, sex } = user;
+// 非同名属性解构
+// let {name, sex:gender} = user
+// 将sex的值赋值给了gender
+// 可以深层解构
