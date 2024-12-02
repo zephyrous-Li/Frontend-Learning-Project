@@ -147,3 +147,76 @@ class Name2 {
 // let {name, sex:gender} = user
 // 将sex的值赋值给了gender
 // 可以深层解构
+
+// 符号
+// 给对象设置私有属性，只在对象内部使用，用于处理不希望被外部访问的方法等（符号不可枚举）
+// 无论符号名是否相同，每次调用symbol（）创建的符号不相同
+// 符号可以作为对象的属性名存在，这种属性称为符号属性
+// Symbol.for(); 创建共享符号
+const syb1 = Symbol();
+// 通过设计创建私有方法getRandom，仅对象内部使用，外部无法访问该函数
+const hero = (() => {
+  const getRandom = Symbol();
+  return {
+    atttack: 30,
+    [getRandom](min, max) {
+      return Math.random * (max - min) + min;
+    },
+    aTK() {
+      const dmg = this.atttack * this[getRandom](0.8, 1.5);
+    },
+  };
+})();
+
+// fatch方法
+const url = "";
+const config = {
+  method: "GET",
+  // ...
+};
+async function fatchUrl() {
+  const res = await fetch(url, config);
+}
+
+// request对象
+// 最好保证每次请求都是个新的request对象
+async function fatchUrl() {
+  const req = new Request("url地址", "配置");
+  const res = await fetch(req);
+}
+// response对象
+//  res.json()
+
+// headers对象
+const header = new Headers({
+  a: 1,
+  b: 2,
+});
+
+// 文件上传
+// 流程：客户端将文件数据发送给服务器
+// 服务器保存上传的文件数据
+// 服务器响应给客户端文件访问地址
+// 方法post
+// 表单格式multiart/form-data
+// 请求体中包含键值对，键的名字与服务器约定
+// 键的名称：imagefile,值：文件数据
+
+async function upLoad() {
+  const inp = "";
+  console.log(inp.files, "上传的文件");
+  if (inp.files.length === 0) {
+    alert("未选择文件");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("imagefile", inp.files[0]);
+  const url = "";
+  const res = await fetch(url, {
+    method: "POST",
+    body: formData,
+  });
+  console.log(res, "请求返回");
+  const result = await res.json();
+  return result;
+}
