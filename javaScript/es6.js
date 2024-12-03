@@ -220,3 +220,60 @@ async function upLoad() {
   const result = await res.json();
   return result;
 }
+
+// 迭代器
+// 如果一个对象具有next方法，并且该方法返回一个对象，格式如下
+// 具有知名符号[Symbol.iterator]符号
+// 并且属性值是个迭代器创建函数的对象就是个可迭代对象
+// 展开运算符可以作用于可迭代对象
+
+/**
+ * 迭代器
+ * @returns  {Object} - 包含 done 和 value 属性的对象
+ */
+function next() {
+  return {
+    /**
+     * 当前迭代的值
+     * @type {*}
+     */
+    value: "",
+    /**
+     * 表示迭代是否已经完成
+     * @type {boolean}
+     */
+    done: "",
+  };
+}
+const arr = [1, 2, 3, 4, 5];
+// for循环遍历
+function forArr() {
+  for (let i = 0; i < arr.length; i++) {
+    const e = arr[i];
+  }
+}
+// 迭代器操作
+function iteratorArr() {
+  const iterator = {
+    i: 0, //当前的数组下标
+    next() {
+      let res = {
+        value: arr[this.i],
+        done: this.i >= arr.length,
+      };
+      this.i++;
+      return res;
+    },
+  };
+  // 迭代器循环，取出数据
+  let data = iterator.next();
+  while (!data.done) {
+    //没有迭代完成，则一直取出数据
+    data = iterator.next();
+    // 数据操作
+    // ...
+  }
+}
+
+
+// 生成器

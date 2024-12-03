@@ -60,4 +60,3 @@ const selectList = (e = [], parentInSelect = false) => {
   });
 };
 const newList = selectList(list);
-console.log(newList);
